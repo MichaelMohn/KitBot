@@ -5,12 +5,21 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import edu.wpi.first.wpilibj.Talon;
+import frc.robot.RobotContainer;
+
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.TalonSRXControlMode;
 
 public class Drivetrain extends SubsystemBase {
-  Talon frontLeft = new Talon(2);
+  TalonSRX firstLeft = new TalonSRX(2);
+  TalonSRX firstRight = new TalonSRX(0);
+  TalonSRX secondRight = new TalonSRX(1);
+  TalonSRX secondLeft = new TalonSRX(3);
   /** Creates a new Drivetrain. */
-  public Drivetrain() {}
+  public Drivetrain() {
+    firstLeft.setInverted(true);
+    secondLeft.setInverted(true);
+  }
 
   @Override
   public void periodic() {
@@ -18,6 +27,16 @@ public class Drivetrain extends SubsystemBase {
   }
 
   public void testMotor(double speed){
-    frontLeft.set(speed);
+    firstLeft.set(TalonSRXControlMode.PercentOutput, speed);
+    firstRight.set(TalonSRXControlMode.PercentOutput, speed);
+    secondLeft.set(TalonSRXControlMode.PercentOutput, speed);
+    secondRight.set(TalonSRXControlMode.PercentOutput, speed);
+  }
+
+  public void fourMotors(double firstLeftOutput, double secondLeftOutput, double firstRightOutput, double secondRightOutput){
+    firstLeft.set(TalonSRXControlMode.PercentOutput, firstLeftOutput);
+    firstRight.set(TalonSRXControlMode.PercentOutput, firstRightOutput);
+    secondLeft.set(TalonSRXControlMode.PercentOutput, secondLeftOutput);
+    secondRight.set(TalonSRXControlMode.PercentOutput, secondRightOutput);
   }
 }
