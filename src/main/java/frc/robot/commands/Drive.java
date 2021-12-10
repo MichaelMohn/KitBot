@@ -28,7 +28,7 @@ public class Drive extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_drivetrain.fourMotors((cont.getRawAxis(1) - cont.getRawAxis(4)), (cont.getRawAxis(1) - cont.getRawAxis(4)), (cont.getRawAxis(1) + cont.getRawAxis(4)), (cont.getRawAxis(1) + cont.getRawAxis(4)));
+    m_drivetrain.drive((-cont.getRawAxis(4)),cont.getRawAxis(1));
   }
 
   // Called once the command ends or is interrupted.
