@@ -20,6 +20,9 @@ public final class Main {
    * <p>If you change your main robot class, change the parameter type.
    */
   public static void main(String... args) {
+    for (int i = 0; i < 100; i++) {
+      System.out.println("Beans");
+    } 
     RobotBase.startRobot(Robot::new);
   }
 }
